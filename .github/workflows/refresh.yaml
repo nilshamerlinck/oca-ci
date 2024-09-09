@@ -1,0 +1,29 @@
+name: refresh
+
+on:
+  schedule:
+    # Every day at 04:00 UTC
+    - cron: "0 6 * * *"
+
+jobs:
+  refresh:
+    runs-on: ubuntu-latest
+    steps:
+      - name: checkout
+        uses: actions/checkout@v3
+
+      - name: Update date in README.md
+        run: |
+          sed -i 's/last update:.*/last update: '"$(date +%Y-%m-%d)"')\./' README.md
+
+      - name: Commit file
+        run: |
+          git config --local user.email "<oca-git-bot@odoo-community.org>"
+          git config --local user.name "OCA-git-bot"
+          git add ./README.md
+          git commit -m "Automated refresh on $(date +%Y-%m-%d)"
+
+      - name: Push changes
+        uses: ad-m/github-push-action@master
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
