@@ -8,7 +8,7 @@ reason, we will prioritize ease of maintenance for OCA over backward
 compatibility. ⚠️
 
 They are automatically rebuilt at least once per day,
-to include the latest changes from Odoo (last update: 2026-02-14).
+to include the latest changes from Odoo (last update: 2026-02-15).
 
 They provide the following guarantees:
 
